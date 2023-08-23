@@ -6,6 +6,15 @@ import {
   TextInput,
   TouchableOpacity,
 } from "react-native";
+import {SvgXml} from "react-native-svg";
+
+const svgCode = `
+<svg xmlns="http://www.w3.org/2000/svg" width="132" height="120" viewBox="0 0 132 120" fill="none">
+  <rect width="120" height="120" rx="16" fill="#F6F6F6"/>
+  <circle cx="119.5" cy="93.5" r="12" fill="white" stroke="#FF6C00"/>
+  <path fill-rule="evenodd" clip-rule="evenodd" d="M120 87H119V93H113V94H119V100H120V94H126V93H120V87Z" fill="#FF6C00"/>
+</svg>
+`;
 
 export default function RegistrationScreen() {
   return (
@@ -15,6 +24,12 @@ export default function RegistrationScreen() {
         source={require("../assets/images/background.jpg")}
       />
       <View style={styles.inputContainer}>
+        <SvgXml
+          xml={svgCode}
+          width="132"
+          height="120"
+          style={styles.svgContainer}
+        />
         <Text style={styles.headerText}>Registration</Text>
         <TextInput style={styles.input} placeholder="Login" />
         <TextInput style={styles.input} placeholder="Email" />
@@ -31,6 +46,10 @@ export default function RegistrationScreen() {
             Already have an account? <Text style={styles.link}>Sign in</Text>
           </Text>
         </TouchableOpacity>
+        <Image
+          style={styles.indicator}
+          source={require("../assets/images/home_Indicator.jpg")}
+        />
       </View>
     </View>
   );
@@ -50,11 +69,14 @@ const styles = StyleSheet.create({
   },
   inputContainer: {
     width: "100%",
-    height: "100%",
-    flex: 1,
     paddingHorizontal: 16,
+    alignItems: "center",
     backgroundColor: "#FFF",
-    marginBottom: 66,
+  },
+  svgContainer: {
+    zIndex: 1,
+    marginBottom: 32,
+    marginTop: -60,
   },
   headerText: {
     color: "#212121",
@@ -65,13 +87,12 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     letterSpacing: 0.3,
     marginBottom: 33,
-    marginTop: 32,
   },
   input: {
     width: "100%",
     height: 50,
     backgroundColor: "#F6F6F6",
-    borderWidth: 1, //
+    borderWidth: 1,
     borderColor: "#E8E8E8",
     marginBottom: 16,
     paddingHorizontal: 16,
@@ -109,5 +130,10 @@ const styles = StyleSheet.create({
   link: {
     textDecorationLine: "underline",
     fontWeight: "bold",
+  },
+  indicator: {
+    alignSelf: "center",
+    marginTop: 66,
+    marginBottom: 5,
   },
 });
