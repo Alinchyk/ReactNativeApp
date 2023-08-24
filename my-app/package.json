@@ -15,9 +15,10 @@
     "expo-status-bar": "~1.6.0",
     "react": "18.2.0",
     "react-native": "0.72.4",
-    "react-native-svg": "^13.12.0",
+    "react-native-svg": "13.9.0",
     "react-native-svg-transformer": "^1.1.0",
-    "uglify-js": "^3.17.4"
+    "uglify-js": "^3.17.4",
+    "@types/react": "~18.2.14"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

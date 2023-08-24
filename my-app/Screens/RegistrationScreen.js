@@ -1,3 +1,4 @@
+import React, {useState} from "react";
 import {
   StyleSheet,
   View,
@@ -5,6 +6,7 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
+  Platform,
 } from "react-native";
 import {SvgXml} from "react-native-svg";
 
@@ -17,6 +19,7 @@ const svgCode = `
 `;
 
 export default function RegistrationScreen() {
+  const [showPassword, setShowPassword] = useState(false);
   return (
     <View style={styles.container}>
       <Image
@@ -24,20 +27,32 @@ export default function RegistrationScreen() {
         source={require("../assets/images/background.jpg")}
       />
       <View style={styles.inputContainer}>
-        <SvgXml
-          xml={svgCode}
-          width="132"
-          height="120"
-          style={styles.svgContainer}
-        />
+        <TouchableOpacity>
+          <SvgXml
+            xml={svgCode}
+            width="132"
+            height="120"
+            style={styles.svgContainer}
+          />
+        </TouchableOpacity>
         <Text style={styles.headerText}>Registration</Text>
         <TextInput style={styles.input} placeholder="Login" />
         <TextInput style={styles.input} placeholder="Email" />
         <TextInput
           style={styles.input}
           placeholder="Password"
-          secureTextEntry={true}
+          secureTextEntry={!showPassword}
         />
+
+        <TouchableOpacity
+          style={styles.showPasswordButton}
+          onPress={() => setShowPassword(!showPassword)}
+        >
+          <Text style={styles.showPasswordButtonText}>
+            {showPassword ? "Hide" : "Show"} Password
+          </Text>
+        </TouchableOpacity>
+
         <TouchableOpacity style={styles.btn}>
           <Text style={styles.btnText}>Sing In</Text>
         </TouchableOpacity>
@@ -71,7 +86,6 @@ const styles = StyleSheet.create({
     width: "100%",
     paddingHorizontal: 16,
     alignItems: "center",
-    backgroundColor: "#FFF",
   },
   svgContainer: {
     zIndex: 1,
@@ -96,6 +110,16 @@ const styles = StyleSheet.create({
     borderColor: "#E8E8E8",
     marginBottom: 16,
     paddingHorizontal: 16,
+  },
+  showPasswordButton: {
+    alignSelf: "flex-end",
+    marginTop: 10,
+    marginTop: -50,
+    marginRight: 10,
+  },
+  showPasswordButtonText: {
+    color: "#1B4371",
+    fontSize: 16,
   },
   btn: {
     display: "flex",
